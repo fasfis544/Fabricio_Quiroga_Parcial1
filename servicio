@@ -1,0 +1,38 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package clases;
+import java.time.LocalDate;
+/**
+ *
+ * @author Operador
+ */
+public abstract class Servicio {
+    protected String codServicio;
+    protected double porcentajeDescuento;
+    protected boolean enPromocion;
+
+    public Servicio(String codServicio, double porcentajeDescuento, boolean enPromocion) {
+        this.codServicio = codServicio;
+        this.porcentajeDescuento = porcentajeDescuento;
+        this.enPromocion = enPromocion;
+    }
+
+    public String getCodServicio() {
+        return codServicio;
+    }
+
+    public boolean isEnPromocion() {
+        return enPromocion;
+    }
+
+     // Método local date usado en las sub clases que servira para calcular el precio cn descuento
+    public abstract double calcularPrecioFinal(LocalDate of);
+
+    @Override
+    public String toString() {
+        return "Código: " + codServicio + ", Promoción: " + enPromocion;
+    }
+}
+

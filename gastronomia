@@ -1,0 +1,33 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package clases;
+import java.time.LocalDate;
+/**
+ *
+ * @author Operador
+ */
+public class gastronomia extends Servicio {
+    private String gastronomia;
+    private double precio;
+    private int diaSemDesc;
+
+    public gastronomia(String gastronomia, double precio, boolean enPromocion, String codServicio, double porcentajeDescuento) {
+        super(codServicio, porcentajeDescuento, enPromocion);
+        this.gastronomia = gastronomia;
+        this.precio = precio;
+        this.diaSemDesc = diaSemDesc;
+    }
+    
+    @Override
+    public double calcularPrecioFinal(LocalDate of) {
+        return isEnPromocion() ? precio - (precio * super.porcentajeDescuento / 100) : precio;
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() + ", Gastronomía: " + gastronomia + ", Precio: " + calcularPrecioFinal(LocalDate.of(2020, 10, 27));
+    }
+}
+

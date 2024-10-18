@@ -1,0 +1,63 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package clases;
+
+/**
+ *
+ * @author Operador
+ */
+import java.util.ArrayList;
+import java.util.List;
+
+public class sistema {
+    private List<Servicio> lstServicio;
+    
+    public sistema() {
+        this.lstServicio = new ArrayList<>();
+    }
+
+    public Servicio traerServicio(String codServicio) {
+        for (Servicio s : lstServicio) {
+            if (s.getCodServicio().equals(codServicio)) {
+                return s;
+            }
+        }
+        return null; // Si no se encuentra, retorna null
+    }
+
+    
+    public List<Servicio> traerServicio(boolean enPromocion) {
+        List<Servicio> serviciosEnPromocion = new ArrayList<>();
+        for (Servicio s : lstServicio) {
+            if (s.isEnPromocion() == enPromocion) {
+                serviciosEnPromocion.add(s);
+            }
+        }
+        return serviciosEnPromocion;
+    }
+
+    public boolean agregarGastronomia(String codServicio, double porcentajeDescuento, boolean enPromocion,
+                                      String gastronomia, double precio, int diaSemDesc) {
+        if (traerServicio(codServicio) != null) {
+            throw new IllegalArgumentException("El servicio con código " + codServicio + " ya existe.");
+        }
+        gastronomia nuevoServicio = new gastronomia (codServicio, porcentajeDescuento, enPromocion, gastronomia, precio);
+        return lstServicio.add(nuevoServicio);
+    }
+
+   
+    public boolean agregarHospedaje(String codServicio, double porcentajeDescuento, boolean enPromocion,
+                                    String hospedaje, double precioPorNoche) {
+        if (traerServicio(codServicio) != null) {
+            throw new IllegalArgumentException("El servicio con código " + codServicio + " ya existe.");
+        }
+        hospedaje nuevoServicio = new hospedaje (codServicio, porcentajeDescuento, enPromocion, hospedaje, precioPorNoche);
+        return lstServicio.add(nuevoServicio);
+    }
+
+    public ArrayList<Servicio> getLstServicio() {
+        return (ArrayList<Servicio>) lstServicio;
+    }
+}

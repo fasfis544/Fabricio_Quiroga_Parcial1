@@ -1,0 +1,81 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package examen;
+import clases.sistema;
+import clases.Servicio;
+import java.time.LocalDate;
+import java.util.List;
+/**
+ *
+ * @author Operador
+ */
+
+public class main {
+    public static void main(String[] args) {
+    sistema sistema = new sistema();
+    
+// 1. Pruebas de Creación de Objetos
+        System.out.println("1-1) Intentar crear el objeto Gastronomia:");
+        try {
+            sistema.agregarGastronomia("4892", 15.0, true, "Hamburguesa criolla", 180.0, 4);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+
+        System.out.println("1-2) Crear el objeto Gastronomia:");
+        try {
+            sistema.agregarGastronomia("489235", 15.0, true, "Hamburguesa criolla", 180.0, 4);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+
+        System.out.println("1-3) crear el objeto Hospedaje:");
+        try {
+            sistema.agregarHospedaje("2872", 10.0, true, "Cabaña 3 personas", 1500.0);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+
+        System.out.println("1-4) Crear el objeto Hospedaje:");
+        try {
+            sistema.agregarHospedaje("287282", 10.0, true, "Cabaña 3 personas", 1500.0);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+
+        // 2. Cálculo de Precios Finales
+        System.out.println("2-1) Calcular e imprimir precio final de Gastronomia:");
+        Servicio servicioGastronomia = sistema.traerServicio("489235");
+        if (servicioGastronomia != null) {
+            double precioFinal = servicioGastronomia.calcularPrecioFinal(LocalDate.of(2020, 10, 28));
+            System.out.println("Precio final: " + precioFinal);
+        }
+
+        System.out.println("2-2) Calcular e imprimir precio final de Hospedaje:");
+        Servicio servicioHospedaje = sistema.traerServicio("287282");
+        if (servicioHospedaje != null) {
+            double precioFinal = servicioHospedaje.calcularPrecioFinal(LocalDate.of(2020, 10, 27));
+            System.out.println("Precio final: " + precioFinal);
+        }
+
+        // 3. Agregar Servicios
+        System.out.println("3) Agregar los siguientes objetos e imprimir la lista de servicios:");
+        sistema.agregarGastronomia("858927", 15.0, true, "Milanesa con pure", 350.0, 3);
+        sistema.agregarHospedaje("489259", 10.0, true, "Habitación triple", 2200.0);
+        sistema.agregarGastronomia("182835", 20.0, false, "Gaseosa", 120.0, 3);
+        sistema.agregarHospedaje("758972", 15.0, false, "Habitación simple", 1000.0);
+        
+
+        // 4. Consultas de Servicios
+        System.out.println("4-1) Traer todos los objetos Servicios en enPromocion=true:");
+        List<Servicio> serviciosEnPromocion = sistema.traerServicio(true);
+        for (Servicio s : serviciosEnPromocion) {
+            System.out.println(s);
+        } 
+        }
+    }
+
+
+        
